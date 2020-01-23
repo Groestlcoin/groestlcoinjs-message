@@ -1,7 +1,6 @@
 {
   "networks": {
-    "bitcoin": "\u0018Bitcoin Signed Message:\n",
-    "dogecoin": "\u0019Dogecoin Signed Message:\n"
+    "groestlcoin": "\u001CGroestlCoin Signed Message:\n"
   },
   "valid": {
     "signature": [
@@ -50,74 +49,56 @@
     ],
     "magicHash": [
       {
-        "network": "bitcoin",
+        "network": "groestlcoin",
         "message": "",
-        "magicHash": "80e795d4a4caadd7047af389d9f7f220562feb6196032e2131e10563352c4bcc"
+        "magicHash": "126773125c2707b325d4da3449ba6bad1bb52b33b604cdafea44bf269e0983a2"
       },
       {
-        "network": "bitcoin",
+        "network": "groestlcoin",
         "message": "Vires is Numeris",
-        "magicHash": "f8a5affbef4a3241b19067aa694562f64f513310817297089a8929a930f4f933"
-      },
-      {
-        "network": "dogecoin",
-        "message": "Vires is Numeris",
-        "magicHash": "c0963d20d0accd0ea0df6c1020bf85a7e629a40e7b5363f2c3e9dcafd5638f12"
+        "magicHash": "f219954abb6c7a22298aaee37147aa6640e6637691aa2b57ed8a9307e3207ca7"
       }
     ],
     "sign": [
       {
         "description": "gives equal r, s values irrespective of point compression or segwit type",
         "message": "vires is numeris",
-        "network": "bitcoin",
+        "network": "groestlcoin",
         "d": "1",
-        "signature": "HF8nHqFr3K2UKYahhX3soVeoW8W1ECNbr0wfck7lzyXjCS5Q16Ek45zyBuy1Fiy9sTPKVgsqqOuPvbycuVSSVl8=",
+        "signature": "G9H4Ep6h2YjUq3H7O9iuA1LyIeEFatGkulcmpqmKkAyBfrmTi1457tjcPnE4QnCYVIPHoy7zgcLo7KdI/BvfA8g=",
         "compressed": {
-          "signature": "IF8nHqFr3K2UKYahhX3soVeoW8W1ECNbr0wfck7lzyXjCS5Q16Ek45zyBuy1Fiy9sTPKVgsqqOuPvbycuVSSVl8="
+          "signature": "H9H4Ep6h2YjUq3H7O9iuA1LyIeEFatGkulcmpqmKkAyBfrmTi1457tjcPnE4QnCYVIPHoy7zgcLo7KdI/BvfA8g="
         },
         "segwit": {
           "P2SH_P2WPKH": {
-            "signature": "JF8nHqFr3K2UKYahhX3soVeoW8W1ECNbr0wfck7lzyXjCS5Q16Ek45zyBuy1Fiy9sTPKVgsqqOuPvbycuVSSVl8="
+            "signature": "I9H4Ep6h2YjUq3H7O9iuA1LyIeEFatGkulcmpqmKkAyBfrmTi1457tjcPnE4QnCYVIPHoy7zgcLo7KdI/BvfA8g="
           },
           "P2WPKH": {
-            "signature": "KF8nHqFr3K2UKYahhX3soVeoW8W1ECNbr0wfck7lzyXjCS5Q16Ek45zyBuy1Fiy9sTPKVgsqqOuPvbycuVSSVl8="
+            "signature": "J9H4Ep6h2YjUq3H7O9iuA1LyIeEFatGkulcmpqmKkAyBfrmTi1457tjcPnE4QnCYVIPHoy7zgcLo7KdI/BvfA8g="
           }
         }
-      },
-      {
-        "description": "supports alternative networks",
-        "message": "vires is numeris",
-        "network": "dogecoin",
-        "d": "1",
-        "signature": "G6k+dZwJ8oOei3PCSpdj603fDvhlhQ+sqaFNIDvo/bI+Xh6zyIKGzZpyud6YhZ1a5mcrwMVtTWL+VXq/hC5Zj7s="
       }
     ],
     "verify": [
       {
         "message": "vires is numeris",
-        "network": "bitcoin",
-        "address": "16UwLL9Risc3QfPqBUvKofHmBQ7wMtjvM",
-        "signature": "G8JawPtQOrybrSP1WHQnQPr67B9S3qrxBrl1mlzoTJOSHEpmnF7D3+t+LX0Xei9J20B5AIdPbeL3AaTBZ4N3bY0=",
+        "network": "groestlcoin",
+        "address": "FkRxjbc4ZecpDxY6hgRdUobJrSsAmgpXbX",
+        "signature": "G/1FnD+62MbELEmXBVhZhcZ2IxR28stXw+3+TrSVbAkSR0PJT+eO762GvhmExsuMNwvoQEeMsaP1c+kYNeP0KBk=",
         "compressed": {
-          "address": "1PMycacnJaSqwwJqjawXBErnLsZ7RkXUAs",
-          "signature": "H8JawPtQOrybrSP1WHQnQPr67B9S3qrxBrl1mlzoTJOSHEpmnF7D3+t+LX0Xei9J20B5AIdPbeL3AaTBZ4N3bY0="
+          "address": "FZRdGCX4E5Le68Lzw3uMW7hzLKHEd74MS4",
+          "signature": "H/1FnD+62MbELEmXBVhZhcZ2IxR28stXw+3+TrSVbAkSR0PJT+eO762GvhmExsuMNwvoQEeMsaP1c+kYNeP0KBk="
         },
         "segwit": {
           "P2SH_P2WPKH": {
-            "address": "3JvL6Ymt8MVWiCNHC7oWU6nLeHNJKLZGLN",
-            "signature": "JF8nHqFr3K2UKYahhX3soVeoW8W1ECNbr0wfck7lzyXjCS5Q16Ek45zyBuy1Fiy9sTPKVgsqqOuPvbycuVSSVl8="
+            "address": "3BU8UUrxajBod37s4NNBK4xsqzpLpEYNPe",
+            "signature": "Ix9RFiXZ8R30Td73Q0kXXKWGKoPOCLMXMIP6qRxcvwLVariEhqHqLncW8D8TF9vBRPgksrOxjTx+rXiEQK65pIY="
           },
           "P2WPKH": {
-            "address": "bc1qw508d6qejxtdg4y5r3zarvary0c5xw7kv8f3t4",
-            "signature": "KF8nHqFr3K2UKYahhX3soVeoW8W1ECNbr0wfck7lzyXjCS5Q16Ek45zyBuy1Fiy9sTPKVgsqqOuPvbycuVSSVl8="
+            "address": "grs1qfq5626nhj3cfhqzmlwypvclxsxgwm5e3jzcf76",
+            "signature": "J1X+PrHu4sR2n7ZE+zwI+TQs2FcgWlrf6TiTlnyaMXW0ORC2gLipUjUZ1JruZ6XJIjqjsp26kD9IZmJXHwf96mo="
           }
         }
-      },
-      {
-        "message": "vires is numeris",
-        "network": "dogecoin",
-        "address": "DFpN6QqFfUm3gKNaxN6tNcab1FArL9cZLE",
-        "signature": "H6k+dZwJ8oOei3PCSpdj603fDvhlhQ+sqaFNIDvo/bI+Xh6zyIKGzZpyud6YhZ1a5mcrwMVtTWL+VXq/hC5Zj7s="
       }
     ]
   },
@@ -140,25 +121,25 @@
       {
         "description": "will fail for the wrong message",
         "message": "foobar",
-        "address": "16UwLL9Risc3QfPqBUvKofHmBQ7wMtjvM",
+        "address": "FVGCPF4WzDZ9V1gWiHUPnKTcRLg5WopWUk",
         "signature": "G8JawPtQOrybrSP1WHQnQPr67B9S3qrxBrl1mlzoTJOSHEpmnF7D3+t+LX0Xei9J20B5AIdPbeL3AaTBZ4N3bY0="
       },
       {
         "description": "will fail for the wrong address",
         "message": "vires is numeris",
-        "address": "1111111111111111111114oLvT2",
+        "address": "FVAiSujNZVgYSc27t6zUTWoKfAGxer42D4",
         "signature": "H8JawPtQOrybrSP1WHQnQPr67B9S3qrxBrl1mlzoTJOSHEpmnF7D3+t+LX0Xei9J20B5AIdPbeL3AaTBZ4N3bY0="
       },
       {
         "description": "does not cross verify (uncompressed address, compressed signature)",
         "message": "vires is numeris",
-        "address": "16UwLL9Risc3QfPqBUvKofHmBQ7wMtjvM",
+        "address": "FVGCPF4WzDZ9V1gWiHUPnKTcRLg5WopWUk",
         "signature": "H8JawPtQOrybrSP1WHQnQPr67B9S3qrxBrl1mlzoTJOSHEpmnF7D3+t+LX0Xei9J20B5AIdPbeL3AaTBZ4N3bY0="
       },
       {
         "description": "does not cross verify (compressed address, uncompressed signature)",
         "message": "vires is numeris",
-        "address": "1PMycacnJaSqwwJqjawXBErnLsZ7RkXUAs",
+        "address": "FsXh4VM9s58PPYKxcgvzdkf712q4wdXxdD",
         "signature": "G8JawPtQOrybrSP1WHQnQPr67B9S3qrxBrl1mlzoTJOSHEpmnF7D3+t+LX0Xei9J20B5AIdPbeL3AaTBZ4N3bY0="
       }
     ]
@@ -166,7 +147,7 @@
   "randomSig": [
     {
       "description": "check that signatures extra data argument is passed correctly",
-      "wif": "5KYZdUEo39z3FPrtuX2QbbwGnNP5zTd7yyr2SC1j299sBCnWjss",
+      "wif": "5KYZdUEo39z3FPrtuX2QbbwGnNP5zTd7yyr2SC1j299sBFS4Wwe",
       "message": "vires is numeris",
       "signatures": [
         {

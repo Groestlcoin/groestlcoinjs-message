@@ -1,5 +1,5 @@
 const test = require('tape').test
-const bitcoin = require('bitcoinjs-lib')
+const bitcoin = require('groestlcoinjs-lib')
 const BigInteger = require('bigi')
 const message = require('../')
 
@@ -76,11 +76,10 @@ fixtures.valid.verify.forEach(f => {
         )
       )
 
-      if (f.network === 'bitcoin') {
+      if (f.network === 'groestlcoin') {
         // defaults to bitcoin network
         t.true(message.verify(f.message, f.address, f.signature))
       }
-
       if (f.compressed) {
         t.true(
           message.verify(
@@ -136,7 +135,7 @@ fixtures.invalid.verify.forEach(f => {
         f.message,
         f.address,
         f.signature,
-        getMessagePrefix('bitcoin')
+        getMessagePrefix('groestlcoin')
       )
     )
     t.end()
