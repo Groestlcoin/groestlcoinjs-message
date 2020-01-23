@@ -15,9 +15,6 @@ function sha256 (b) {
     .update(b)
     .digest()
 }
-function hash256 (buffer) {
-  return sha256(sha256(buffer))
-}
 function hash160 (buffer) {
   return createHash('ripemd160')
     .update(sha256(buffer))
@@ -55,7 +52,7 @@ function decodeSignature (buffer) {
 }
 
 function magicHash (message, messagePrefix) {
-  messagePrefix = messagePrefix || '\u0018Bitcoin Signed Message:\n'
+  messagePrefix = messagePrefix || '\u001CGroestlCoin Signed Message:\n'
   if (!Buffer.isBuffer(messagePrefix)) {
     messagePrefix = Buffer.from(messagePrefix, 'utf8')
   }
@@ -67,7 +64,7 @@ function magicHash (message, messagePrefix) {
   messagePrefix.copy(buffer, 0)
   varuint.encode(message.length, buffer, messagePrefix.length)
   buffer.write(message, messagePrefix.length + messageVISize)
-  return hash256(buffer)
+  return sha256(buffer)
 }
 
 function sign (
