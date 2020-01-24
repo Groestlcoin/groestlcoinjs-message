@@ -31,6 +31,19 @@ function encodeSignature (signature, recovery, compressed, segwitType) {
   return Buffer.concat([Buffer.alloc(1, recovery + 27), signature])
 }
 
+/**
+  Electrum signs segwit messages as if they were compressed
+*/
+
+function encodeSignatureElectrum (signature, recovery, compressed, segwitType) {
+  if (segwitType !== undefined) {
+    recovery += 4
+  } else {
+    if (compressed) recovery += 4
+  }
+  return Buffer.concat([Buffer.alloc(1, recovery + 27), signature])
+}
+
 function decodeSignature (buffer) {
   if (buffer.length !== 65) throw new Error('Invalid signature length')
 
@@ -108,6 +121,47 @@ function sign (
   )
 }
 
+function signElectrum (
+  message,
+  privateKey,
+  compressed,
+  messagePrefix,
+  sigOptions
+) {
+  if (typeof messagePrefix === 'object' && sigOptions === undefined) {
+    sigOptions = messagePrefix
+    messagePrefix = undefined
+  }
+  let { segwitType, extraEntropy } = sigOptions || {}
+  if (
+    segwitType &&
+    (typeof segwitType === 'string' || segwitType instanceof String)
+  ) {
+    segwitType = segwitType.toLowerCase()
+  }
+  if (
+    segwitType &&
+    segwitType !== SEGWIT_TYPES.P2SH_P2WPKH &&
+    segwitType !== SEGWIT_TYPES.P2WPKH
+  ) {
+    throw new Error(
+      'Unrecognized segwitType: use "' +
+        SEGWIT_TYPES.P2SH_P2WPKH +
+        '" or "' +
+        SEGWIT_TYPES.P2WPKH +
+        '"'
+    )
+  }
+  const hash = magicHash(message, messagePrefix)
+  const sigObj = secp256k1.sign(hash, privateKey, { data: extraEntropy })
+  return encodeSignatureElectrum(
+    sigObj.signature,
+    sigObj.recovery,
+    compressed,
+    segwitType
+  )
+}
+
 function verify (message, address, signature, messagePrefix) {
   if (!Buffer.isBuffer(signature)) signature = Buffer.from(signature, 'base64')
 
@@ -145,8 +199,47 @@ function verify (message, address, signature, messagePrefix) {
   return bufferEquals(actual, expected)
 }
 
+function verifyElectrum (message, address, signature, messagePrefix) {
+  if (!Buffer.isBuffer(signature)) signature = Buffer.from(signature, 'base64')
+
+  const parsed = decodeSignature(signature)
+  const hash = magicHash(message, messagePrefix)
+  const publicKey = secp256k1.recover(
+    hash,
+    parsed.signature,
+    parsed.recovery,
+    parsed.compressed
+  )
+  const publicKeyHash = hash160(publicKey)
+  let actual, expected
+
+  try {
+    let expectedHash160 = bs58grscheck.decode(address).slice(1)
+    // first check if this hash is the same as the publicKeyHash
+    // validate if it is P2PKH (starts with F)
+    if (bufferEquals(publicKeyHash, expectedHash160)) {
+      return true
+    }
+    // check if it is a segwit P2SH_P2WPKH address (starts with 3)
+    const redeemScript = Buffer.concat([
+      Buffer.from('0014', 'hex'),
+      publicKeyHash
+    ])
+    const redeemScriptHash = Buffer.from(hash160(redeemScript))
+    return bufferEquals(redeemScriptHash, expectedHash160)
+  } catch (e) {
+    const result = bech32.decode(address)
+    const data = bech32.fromWords(result.words.slice(1))
+    actual = publicKeyHash
+    expected = Buffer.from(data)
+    return bufferEquals(actual, expected)
+  }
+}
+
 module.exports = {
   magicHash: magicHash,
   sign: sign,
-  verify: verify
+  verify: verify,
+  signElectrum: signElectrum,
+  verifyElectrum: verifyElectrum
 }

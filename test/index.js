@@ -63,6 +63,49 @@ fixtures.valid.sign.forEach(f => {
   })
 })
 
+fixtures.valid.signElectrum.forEach(f => {
+  test('signElectrum: ' + f.description, t => {
+    const pk = new bitcoin.ECPair(new BigInteger(f.d)).d.toBuffer(32)
+    let signature = message.sign(
+      f.message,
+      pk,
+      false,
+      getMessagePrefix(f.network)
+    )
+    t.same(signature.toString('base64'), f.signature)
+
+    if (f.compressed) {
+      signature = message.sign(f.message, pk, true, getMessagePrefix(f.network))
+      t.same(signature.toString('base64'), f.compressed.signature)
+    }
+
+    if (f.segwit) {
+      if (f.segwit.P2SH_P2WPKH) {
+        signature = message.signElectrum(
+          f.message,
+          pk,
+          true,
+          getMessagePrefix(f.network),
+          { segwitType: 'p2sh(p2wpkh)' }
+        )
+        t.same(signature.toString('base64'), f.segwit.P2SH_P2WPKH.signature)
+      }
+      if (f.segwit.P2WPKH) {
+        signature = message.signElectrum(
+          f.message,
+          pk,
+          true,
+          getMessagePrefix(f.network),
+          { segwitType: 'p2wpkh' }
+        )
+        t.same(signature.toString('base64'), f.segwit.P2WPKH.signature)
+      }
+    }
+
+    t.end()
+  })
+})
+
 fixtures.valid.verify.forEach(f => {
   test(
     'verifies a valid signature for "' + f.message + '" (' + f.network + ')',
@@ -105,6 +148,62 @@ fixtures.valid.verify.forEach(f => {
         if (f.segwit.P2WPKH) {
           t.true(
             message.verify(
+              f.message,
+              f.segwit.P2WPKH.address,
+              f.segwit.P2WPKH.signature,
+              getMessagePrefix(f.network)
+            )
+          )
+        }
+      }
+
+      t.end()
+    }
+  )
+})
+
+fixtures.valid.verifyElectrum.forEach(f => {
+  test(
+    'verifies a valid signature for "' + f.message + '" (' + f.network + ') using Electrum rules',
+    t => {
+      t.true(
+        message.verifyElectrum(
+          f.message,
+          f.address,
+          f.signature,
+          getMessagePrefix(f.network)
+        )
+      )
+
+      if (f.network === 'groestlcoin') {
+        // defaults to bitcoin network
+        t.true(message.verifyElectrum(f.message, f.address, f.signature))
+      }
+      if (f.compressed) {
+        t.true(
+          message.verifyElectrum(
+            f.message,
+            f.compressed.address,
+            f.compressed.signature,
+            getMessagePrefix(f.network)
+          )
+        )
+      }
+
+      if (f.segwit) {
+        if (f.segwit.P2SH_P2WPKH) {
+          t.true(
+            message.verifyElectrum(
+              f.message,
+              f.segwit.P2SH_P2WPKH.address,
+              f.segwit.P2SH_P2WPKH.signature,
+              getMessagePrefix(f.network)
+            )
+          )
+        }
+        if (f.segwit.P2WPKH) {
+          t.true(
+            message.verifyElectrum(
               f.message,
               f.segwit.P2WPKH.address,
               f.segwit.P2WPKH.signature,
