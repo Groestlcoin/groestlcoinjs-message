@@ -214,7 +214,7 @@ function verifyElectrum (message, address, signature, messagePrefix) {
   let actual, expected
 
   try {
-    let expectedHash160 = bs58grscheck.decode(address).slice(1)
+    const expectedHash160 = bs58grscheck.decode(address).slice(1)
     // first check if this hash is the same as the publicKeyHash
     // validate if it is P2PKH (starts with F)
     if (bufferEquals(publicKeyHash, expectedHash160)) {
