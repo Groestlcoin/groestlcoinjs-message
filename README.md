@@ -3,8 +3,8 @@
 ## Examples
 
 ``` javascript
-var bitcoin = require('groestlcoinjs-lib') // v3.x.x
-var bitcoinMessage = require('.')
+var bitcoin = require('groestlcoinjs-lib') // v4.x.x
+var bitcoinMessage = require('groestlcoinjs-message')
 ```
 
 > sign(message, privateKey, compressed[, network.messagePrefix, sigOptions])
