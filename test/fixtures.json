@@ -94,26 +94,6 @@
         }
       }
     ],
-    "signElectrum": [
-      {
-        "description": "gives equal r, s values irrespective of point compression or segwit type",
-        "message": "vires is numeris",
-        "network": "groestlcoin",
-        "d": "1",
-        "signature": "G9H4Ep6h2YjUq3H7O9iuA1LyIeEFatGkulcmpqmKkAyBfrmTi1457tjcPnE4QnCYVIPHoy7zgcLo7KdI/BvfA8g=",
-        "compressed": {
-          "signature": "H9H4Ep6h2YjUq3H7O9iuA1LyIeEFatGkulcmpqmKkAyBfrmTi1457tjcPnE4QnCYVIPHoy7zgcLo7KdI/BvfA8g="
-        },
-        "segwit": {
-          "P2SH_P2WPKH": {
-            "signature": "H9H4Ep6h2YjUq3H7O9iuA1LyIeEFatGkulcmpqmKkAyBfrmTi1457tjcPnE4QnCYVIPHoy7zgcLo7KdI/BvfA8g="
-          },
-          "P2WPKH": {
-            "signature": "H9H4Ep6h2YjUq3H7O9iuA1LyIeEFatGkulcmpqmKkAyBfrmTi1457tjcPnE4QnCYVIPHoy7zgcLo7KdI/BvfA8g="
-          }
-        }
-      }
-    ],
     "verify": [
       {
         "message": "vires is numeris",
@@ -132,28 +112,6 @@
           "P2WPKH": {
             "address": "grs1qfq5626nhj3cfhqzmlwypvclxsxgwm5e3jzcf76",
             "signature": "J1X+PrHu4sR2n7ZE+zwI+TQs2FcgWlrf6TiTlnyaMXW0ORC2gLipUjUZ1JruZ6XJIjqjsp26kD9IZmJXHwf96mo="
-          }
-        }
-      }
-    ],
-    "verifyElectrum": [
-      {
-        "message": "vires is numeris",
-        "network": "groestlcoin",
-        "address": "FkRxjbc4ZecpDxY6hgRdUobJrSsAmgpXbX",
-        "signature": "G/1FnD+62MbELEmXBVhZhcZ2IxR28stXw+3+TrSVbAkSR0PJT+eO762GvhmExsuMNwvoQEeMsaP1c+kYNeP0KBk=",
-        "compressed": {
-          "address": "FZRdGCX4E5Le68Lzw3uMW7hzLKHEd74MS4",
-          "signature": "H/1FnD+62MbELEmXBVhZhcZ2IxR28stXw+3+TrSVbAkSR0PJT+eO762GvhmExsuMNwvoQEeMsaP1c+kYNeP0KBk="
-        },
-        "segwit": {
-          "P2SH_P2WPKH": {
-            "address": "3BU8UUrxajBod37s4NNBK4xsqzpLpEYNPe",
-            "signature": "Hx9RFiXZ8R30Td73Q0kXXKWGKoPOCLMXMIP6qRxcvwLVariEhqHqLncW8D8TF9vBRPgksrOxjTx+rXiEQK65pIY="
-          },
-          "P2WPKH": {
-            "address": "grs1q49qls5kklryt95g5xx4p6msycpgjp8ramfc9jq",
-            "signature": "HybZgYI3pXZiBQ4N98QRENPqjP+465a9X5xpJdaRbHtBZCORuFvJ9/sMZs/PDc3c0Youbzs+JXHmXHTp33BVMHw="
           }
         }
       }
