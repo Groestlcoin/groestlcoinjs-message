@@ -1,6 +1,6 @@
 # groestlcoinjs-message
 
-## Examples
+## Examples (Note about Electrum support at the bottom)
 
 ``` javascript
 var bitcoin = require('groestlcoinjs-lib') // v4.x.x
@@ -49,7 +49,7 @@ console.log(signature.toString('base64'))
 // => valid signature
 ```
 
-> verify(message, address, signature[, network.messagePrefix])
+> verify(message, address, signature[, network.messagePrefix, checkSegwitAlways])
 
 Verify a Groestlcoin message
 ``` javascript
@@ -58,5 +58,10 @@ var address = 'FYaQj3UMkGfostbARMr55KktqCKqGXikt9'
 console.log(bitcoinMessage.verify(message, address, signature))
 // => true
 ```
+
+## About Electrum segwit signature support
+
+- For Signing: Use the non-segwit compressed signing parameters for both segwit types (p2sh-p2wpkh and p2wpkh)
+- For Verifying: Pass the checkSegwitAlways argument as true. (messagePrefix should be set to null to default to Bitcoin messagePrefix)
 
 ## LICENSE [MIT](LICENSE)
