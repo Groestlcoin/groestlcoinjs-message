@@ -15,19 +15,19 @@ var bitcoinMessage = require('groestlcoinjs-message')
 
 Sign a Groestlcoin message
 ``` javascript
-var keyPair = bitcoin.ECPair.fromWIF('5JvMTbrwCEs3vd857GR7PtvpewiHcZQSro7eaqJodmr5Ygddtwk')
+var keyPair = bitcoin.ECPair.fromWIF('L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrnZQVUG')
 var privateKey = keyPair.privateKey
 var message = 'This is an example of a signed message.'
 
 var signature = bitcoinMessage.sign(message, privateKey, keyPair.compressed)
 console.log(signature.toString('base64'))
-// => valid signature
+// => 'IOES8hMhdoZFP0QaMJXTExZPmrTneGfbDmJib7Jt3gTaN0CfsYjBLWRvnDtd9aKlTt8BXxV95PYFOYhdiM1x90w='
 ```
 
 To produce non-deterministic signatures you can pass an extra option to sign()
 ``` javascript
 var { randomBytes } = require('crypto')
-var keyPair = bitcoin.ECPair.fromWIF('5JvMTbrwCEs3vd857GR7PtvpewiHcZQSro7eaqJodmr5Ygddtwk')
+var keyPair = bitcoin.ECPair.fromWIF('L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrnZQVUG')
 var privateKey = keyPair.privateKey
 var message = 'This is an example of a signed message.'
 
@@ -41,17 +41,17 @@ Sign a Groestlcoin message (with segwit addresses)
 // P2SH(P2WPKH) address 'p2sh(p2wpkh)'
 var signature = bitcoinMessage.sign(message, privateKey, keyPair.compressed, { segwitType: 'p2sh(p2wpkh)' })
 console.log(signature.toString('base64'))
-// => valid signature
+// => 'JOES8hMhdoZFP0QaMJXTExZPmrTneGfbDmJib7Jt3gTaN0CfsYjBLWRvnDtd9aKlTt8BXxV95PYFOYhdiM1x90w='
 
 // P2WPKH address 'p2wpkh'
 var signature = bitcoinMessage.sign(message, privateKey, keyPair.compressed, { segwitType: 'p2wpkh' })
 console.log(signature.toString('base64'))
-// => valid signature
+// => 'KOES8hMhdoZFP0QaMJXTExZPmrTneGfbDmJib7Jt3gTaN0CfsYjBLWRvnDtd9aKlTt8BXxV95PYFOYhdiM1x90w='
 ```
 
-Sign a Bitcoin message using a Signer interface.
+Sign a Groestlcoin message using a Signer interface.
 ``` javascript
-var keyPair = bitcoin.ECPair.fromWIF('L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrisoyY1')
+var keyPair = bitcoin.ECPair.fromWIF('L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrnZQVUG')
 var privateKey = keyPair.privateKey
 var message = 'This is an example of a signed message.'
 
@@ -61,27 +61,27 @@ var signer = { sign: (hash, extraData) => secp256k1.sign(hash, privateKey, { dat
 
 var signature = bitcoinMessage.sign(message, signer, keyPair.compressed)
 console.log(signature.toString('base64'))
-// => 'H9L5yLFjti0QTHhPyFrZCT1V/MMnBtXKmoiKDZ78NDBjERki6ZTQZdSMCtkgoNmp17By9ItJr8o7ChX0XxY91nk='
+// => 'IOES8hMhdoZFP0QaMJXTExZPmrTneGfbDmJib7Jt3gTaN0CfsYjBLWRvnDtd9aKlTt8BXxV95PYFOYhdiM1x90w='
 ```
 
 > signAsync(message, privateKey, compressed[, network.messagePrefix, sigOptions])
 > Same as sign, except returns a promise, and can accept a SignerAsync interface instead of privateKey
 
-Sign a Bitcoin message asynchronously
+Sign a Groestlcoin message asynchronously
 ``` javascript
-var keyPair = bitcoin.ECPair.fromWIF('L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrisoyY1')
+var keyPair = bitcoin.ECPair.fromWIF('L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrnZQVUG')
 var privateKey = keyPair.privateKey
 var message = 'This is an example of a signed message.'
 
 bitcoinMessage.signAsync(message, privateKey, keyPair.compressed).then(signature => {
   console.log(signature.toString('base64'))
 })
-// => 'H9L5yLFjti0QTHhPyFrZCT1V/MMnBtXKmoiKDZ78NDBjERki6ZTQZdSMCtkgoNmp17By9ItJr8o7ChX0XxY91nk='
+// => 'IOES8hMhdoZFP0QaMJXTExZPmrTneGfbDmJib7Jt3gTaN0CfsYjBLWRvnDtd9aKlTt8BXxV95PYFOYhdiM1x90w='
 ```
 
-Sign a Bitcoin message asynchronously using SignerAsync interface
+Sign a Groestlcoin message asynchronously using SignerAsync interface
 ``` javascript
-var keyPair = bitcoin.ECPair.fromWIF('L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrisoyY1')
+var keyPair = bitcoin.ECPair.fromWIF('L4rK1yDtCWekvXuE6oXD9jCYfFNV2cWRpVuPLBcCU2z8TrnZQVUG')
 var privateKey = keyPair.privateKey
 var message = 'This is an example of a signed message.'
 
@@ -93,18 +93,18 @@ var signer = { sign: (hash, extraData) => secp256k1.sign(hash, privateKey, { dat
 bitcoinMessage.signAsync(message, signerAsync, keyPair.compressed).then(signature => {
   console.log(signature.toString('base64'))
 })
-// => 'H9L5yLFjti0QTHhPyFrZCT1V/MMnBtXKmoiKDZ78NDBjERki6ZTQZdSMCtkgoNmp17By9ItJr8o7ChX0XxY91nk='
+// => 'IOES8hMhdoZFP0QaMJXTExZPmrTneGfbDmJib7Jt3gTaN0CfsYjBLWRvnDtd9aKlTt8BXxV95PYFOYhdiM1x90w='
 bitcoinMessage.signAsync(message, signer, keyPair.compressed).then(signature => {
   console.log(signature.toString('base64'))
 })
-// => 'H9L5yLFjti0QTHhPyFrZCT1V/MMnBtXKmoiKDZ78NDBjERki6ZTQZdSMCtkgoNmp17By9ItJr8o7ChX0XxY91nk='
+// => 'IOES8hMhdoZFP0QaMJXTExZPmrTneGfbDmJib7Jt3gTaN0CfsYjBLWRvnDtd9aKlTt8BXxV95PYFOYhdiM1x90w='
 ```
 
 > verify(message, address, signature[, network.messagePrefix, checkSegwitAlways])
 
 Verify a Groestlcoin message
 ``` javascript
-var address = 'FYaQj3UMkGfostbARMr55KktqCKqGXikt9'
+var address = 'FjDacfpwTS1hvPkEW98HimmD3ChSpZQuss'
 
 console.log(bitcoinMessage.verify(message, address, signature))
 // => true
